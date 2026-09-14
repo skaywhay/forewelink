@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Панель ПК</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // Вставь сюда ID гиста (набор символов из ссылки Шага 1)
+        const GIST_ID = "eaa650b10da6c06fd70e22b1b083434e";
+        
+        fetch(`https://api.github.com/gists/${GIST_ID}`)
+            .then(response => response.json())
+            .then(data => {
+                const content = JSON.parse(data.files["pc_url.json"].content);
+                window.location.replace(content.url);
+            })
+            .catch(err => {
+                document.body.innerHTML = "<h3 style='color:red'>Ошибка подключения к облаку</h3>";
+            });
+    </script>
+</head>
+<body style="background: #1e1e1e; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif;">
+    <h3>Ищем активный ПК...</h3>
+</body>
+</html>
